@@ -17,11 +17,11 @@ public class SecurityConfig {
         http.formLogin(c -> c.loginPage("/login") .permitAll());
         http.logout(c -> c.logoutUrl("/logout").logoutSuccessUrl("/login").permitAll());
         http.authorizeHttpRequests(c ->
-                c.requestMatchers("/bootstrap/**","/")
-                .permitAll().requestMatchers("/customer/list-customers")
-                .hasAnyRole("CUSTOMER_READ","SUPER_ADMIN")
+               c.requestMatchers("/bootstrap/**","/").permitAll()
+                .requestMatchers("/customer/list-customers").hasAnyRole("CUSTOMER_READ","SUPER_ADMIN")
                 .requestMatchers("/employee/**").hasAnyRole("SUPER_ADMIN","EMPLOYEE_ADMIN")
                 .requestMatchers("/customer/**").hasRole("SUPER_ADMIN")
+                .requestMatchers("/department/**").hasAnyRole("DEPARTMENT_READ","DEPARTMENT_WRITE","SUPER_ADMIN")
                 .anyRequest().authenticated());
         http.csrf(c -> c.disable());
         return http.build();

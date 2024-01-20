@@ -29,13 +29,14 @@
                         <td th:text="${emp.address}"></td>
                         <td th:text="${emp.cubicleNo}"></td>
                         <td>
-                            <a th:href="@{'/employee/delete?id='+${emp.id}}" class="bth btn-outline-danger">Delete</a>
+                            <a th:href="@{'/employee/delete?id='+${emp.id}}"
+                               class="btn btn-outline-danger">Delete</a>
                         </td>
 
                     </tr>
                     </tbody>
                 </table>
-                <a th:href="@{/employee/create-employee}" class="btn btn-primary my-3">Create Employee</a>
+                <a th:href="@{/employee/save-employee}" class="btn btn-primary my-3">Create Employee</a>
             </div>
         </div>
     </div>

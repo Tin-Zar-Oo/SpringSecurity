@@ -2,9 +2,10 @@
 <html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
 <body class="bg-light">
 <main role="main">
-   <div class="container mt-5">
-       <h3 class="text-center" th:text="${message}"></h3>
-       <a th:href="@{/}" class="btn  btn-primary">Home</a>
+   <div class="container mt-5 text-center">
+       <h1>We're sorry, you got error!</h1>
+       <h2 class="text-danger" th:text="${statusCode}"></h2>
+       <h3 class="text-danger"th:text="${message}"></h3>
    </div>
 </main>
 </body>

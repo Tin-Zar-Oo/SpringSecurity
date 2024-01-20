@@ -2,7 +2,6 @@ package com.example.securitymasterdemo.controller;
 
 import com.example.securitymasterdemo.dao.CustomerDao;
 import com.example.securitymasterdemo.entity.Customer;
-import com.example.securitymasterdemo.entity.Employee;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,30 +16,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerDao customerDao;
-    @GetMapping("/customer/create-customer")
+    @GetMapping("/customer/save-customer")
     public String createCustomer(Model model){
-        model.addAttribute("customers",new Customer());
-       return "customerForm";
+        model.addAttribute("customer",new Customer());
+        return "customerForm";
     }
-
-
-
-    @PostMapping("/customer/create-customer")
-    public String processCustomer(@Valid Customer customer, BindingResult result){
+    @PostMapping("/customer/save-customer")
+    public String processCustomer(@Valid Customer customer
+            , BindingResult result){
         if(result.hasErrors()){
             return "customerForm";
         }
         customerDao.save(customer);
         return "redirect:/customer/list-customers";
     }
-
     @GetMapping("/customer/list-customers")
     public String listCustomers(Model model){
-    model.addAttribute("customers",customerDao.findAll());
-    return "customers";
+        model.addAttribute("customers",customerDao.findAll());
+        return "customers";
     }
-
-    @GetMapping("/customer-delete")
+    @GetMapping("/customer/delete")
     public String deleteCustomer(@RequestParam("id")int id){
         customerDao.deleteById(id);
         return "redirect:/customer/list-customers";
