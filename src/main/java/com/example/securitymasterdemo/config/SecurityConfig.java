@@ -19,6 +19,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(c ->
                c.requestMatchers("/bootstrap/**","/").permitAll()
                 .requestMatchers("/customer/list-customers").hasAnyRole("CUSTOMER_READ","SUPER_ADMIN")
+                .requestMatchers("/department/list-departments").hasAnyRole("SUPER_ADMIN","DEPARTMENT_READ","DEPARTMENT_WRITE")
                 .requestMatchers("/employee/**").hasAnyRole("SUPER_ADMIN","EMPLOYEE_ADMIN")
                 .requestMatchers("/customer/**").hasRole("SUPER_ADMIN")
                 .requestMatchers("/department/**").hasAnyRole("DEPARTMENT_READ","DEPARTMENT_WRITE","SUPER_ADMIN")
